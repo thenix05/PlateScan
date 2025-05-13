@@ -1,0 +1,45 @@
+﻿@page "/counter"
+@rendermode InteractiveWebAssembly
+<PageTitle>Counter</PageTitle>
+<div>
+    <input / style="border-radius: 50px;" placeholder="search plates...">
+    @for(int i = 0; i < amountOfPlates; i++)
+    {
+        <div style="padding: 30px; margin: 20px; background-color: gray;">
+            <div style="background-color: white;">@platesList[@i]</div>
+        </div>
+    }
+
+   
+        <div>
+            <input @bind="typingNumber"/>
+            <button onclick="@searchingNumber"></button>
+        </div>
+        <div>@typedNumber</div>
+        <button onclick="@listLength">asd</button>
+</div>
+@code
+    {
+        int amountOfPlates = 0;
+        string searchingPlate;
+        string newPlateValue { get; set; }
+        List<string> platesList = new List<string>()
+    {
+        "SG 364333", "SG 106644", "ZH 401488", "TG 3200"
+    };
+
+        void listLength()
+
+        {
+            amountOfPlates = platesList.Count;
+
+        }
+    //
+    string typingNumber;
+    string typedNumber;
+    void searchingNumber()
+    {
+        platesList.Add(typingNumber);
+        typedNumber = typingNumber;
+    }
+}
